@@ -70,4 +70,71 @@ Modules include:
 Each role has its own dashboard and access permissions.
 
 ---
+---
+
+## 📸 Screenshots
+
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Donor Dashboard
+![Donor Dashboard](screenshots/donordashboard.png)
+
+### Hospital Dashboard
+![Hospital Dashboard](screenshots/hospitaldashboard.png)
+
+### Patient Dashboard
+![Patient Dashboard](screenshots/patientdashboard.png)
+
+### Request Management
+![Request](screenshots/request.png)
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/Vinayreddy765/vitalaid-healthcare-management-system.git
+
+2. Database Setup
+
+Create MySQL database:
+
+CREATE DATABASE vitalaid;
+
+
+Import database/schema.sql.
+
+3. Configure Database
+
+Update database credentials in:
+
+DatabaseConfig.java
+
+4. Run Application
+
+Open project in NetBeans and run:
+
+VitalAidApp.java
+
+📊 Impact
+
+Reduces emergency response delay
+
+Improves hospital resource coordination
+
+Enables faster donor matching
+
+Optimizes healthcare resource usage
+
+🚀 Future Enhancements
+
+Google Maps hospital locator
+
+Mobile application
+
+Predictive resource demand analytics
+
+Report export and analytics dashboard
 
