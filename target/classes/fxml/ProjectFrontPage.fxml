@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.FrontPageController" 
+           prefWidth="1500" prefHeight="1500">
+
+    <ImageView fitHeight="1000" fitWidth="1500" pickOnBounds="true" preserveRatio="false">
+        <image>
+            <Image url="@../images/GAT.jpg"/> 
+        </image>
+    </ImageView>
+
+    <VBox style="-fx-background-color: rgba(0, 0, 0, 0.7);" 
+          alignment="CENTER" spacing="25">
+        
+        <padding>
+            <Insets top="30" right="50" bottom="30" left="50"/>
+        </padding>
+
+        <VBox alignment="CENTER" spacing="10">
+            <ImageView fitHeight="80" fitWidth="1500" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/gatlogos.jpg"/> 
+                </image>
+            </ImageView>
+        </VBox>
+        
+        <Text text="VITAL AID UNIFIED BLOOD, PLASMA AND VENTILATOR MANAGEMENT SYSTEM" 
+              textAlignment="CENTER" wrappingWidth="900"
+              style="-fx-fill: #ffffff; -fx-font-size: 36px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, black, 10, 0, 0, 0);"/>
+
+        <VBox alignment="CENTER" spacing="5">
+            <Text text="Project Guided By:" 
+                  style="-fx-fill: #ddd; -fx-font-size: 18px;"/>
+            <Text fx:id="guideNameText" text="Prof. Priyanka H V (Assistant Professor, ISE)" 
+                  style="-fx-fill: #ffcc00; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </VBox>
+
+        <VBox spacing="10" maxWidth="600" style="-fx-border-color: #764ba2; -fx-border-width: 2px; -fx-padding: 20; -fx-background-color: rgba(255, 255, 255, 0.1); -fx-background-radius: 15;">
+            <Text text="Team Members" 
+                  style="-fx-fill: white; -fx-font-size: 22px; -fx-font-weight: bold; -fx-underline: true;"/>
+            
+            <GridPane hgap="20" vgap="5" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints halignment="LEFT" minWidth="250"/>
+                    <ColumnConstraints halignment="LEFT" minWidth="150"/>
+                </columnConstraints>
+                
+                <Text text="1. SHREE GANESH" style="-fx-fill: #eee; -fx-font-size: 16px; -fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Text text="1GA22IS145" style="-fx-fill: #ccc; -fx-font-size: 16px;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Text text="2. SRUJANGOWDA" style="-fx-fill: #eee; -fx-font-size: 16px; -fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Text text="1GA23IS165" style="-fx-fill: #ccc; -fx-font-size: 16px;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Text text="3. VINAY REDDY" style="-fx-fill: #eee; -fx-font-size: 16px; -fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Text text="1GA23IS184" style="-fx-fill: #ccc; -fx-font-size: 16px;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Text text="4. YASHWANTHGOWDA D.K" style="-fx-fill: #eee; -fx-font-size: 16px; -fx-font-weight: bold;" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Text text="1GA23IS188" style="-fx-fill: #ccc; -fx-font-size: 16px;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+        </VBox>
+        
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <Button fx:id="launchButton" text="CLICK TO LAUNCH PROJECT" 
+                onAction="#launchProject"
+                style="-fx-font-size: 20px; -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 40; -fx-background-radius: 30; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);"/>
+
+    </VBox>
+</StackPane>

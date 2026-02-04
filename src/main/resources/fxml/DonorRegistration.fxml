@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.DonorRegistrationController"
+            fitToWidth="true" pannable="true"
+            hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+
+    <content>
+        <VBox spacing="20" styleClass="registration-form" prefWidth="600" prefHeight="750">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+
+            <!-- Header -->
+            <VBox spacing="10" alignment="CENTER">
+                <Text text="🩸" style="-fx-font-size: 48px;"/>
+                <Text text="Donor Registration" styleClass="form-title"
+                      style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-fill: #667eea;"/>
+                <Text text="Join us in saving lives! Register as a blood donor."
+                      styleClass="form-subtitle"
+                      style="-fx-font-size: 14px; -fx-fill: #7f8c8d;"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Error Label -->
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false"
+                   wrapText="true" maxWidth="520"/>
+
+            <!-- Account Details -->
+            <VBox spacing="15">
+                <Text text="Account Information"
+                      style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-fill: #2c3e50;"/>
+                <GridPane hgap="15" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120" prefWidth="120"/>
+                        <ColumnConstraints minWidth="360" prefWidth="360"/>
+                    </columnConstraints>
+
+                    <Label text="Username *" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="usernameField" promptText="Choose a unique username" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Email *" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="emailField" promptText="your.email@example.com" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Phone *" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <TextField fx:id="phoneField" promptText="10-digit mobile number" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Password *" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <PasswordField fx:id="passwordField" promptText="Minimum 8 characters" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label text="Confirm Password *" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Re-enter password" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                </GridPane>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Personal Details -->
+            <VBox spacing="15">
+                <Text text="Personal Information"
+                      style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-fill: #2c3e50;"/>
+                <GridPane hgap="15" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120" prefWidth="120"/>
+                        <ColumnConstraints minWidth="360" prefWidth="360"/>
+                    </columnConstraints>
+
+                    <Label text="Full Name *" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="fullNameField" promptText="Enter your full name" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Blood Group *" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <ComboBox fx:id="bloodGroupCombo" promptText="Select blood group" prefWidth="360" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Date of Birth *" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <DatePicker fx:id="dobPicker" promptText="Select date" prefWidth="360" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Gender *" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <ComboBox fx:id="genderCombo" promptText="Select gender" prefWidth="360" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                    <Label text="Weight (kg) *" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                    <TextField fx:id="weightField" promptText="Minimum 50 kg" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                </GridPane>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Address Details -->
+            <VBox spacing="15">
+                <Text text="Address Information"
+                      style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-fill: #2c3e50;"/>
+                <GridPane hgap="15" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="120" prefWidth="120"/>
+                        <ColumnConstraints minWidth="360" prefWidth="360"/>
+                    </columnConstraints>
+
+                    <Label text="Address *" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextArea fx:id="addressArea" promptText="Enter your complete address" prefRowCount="2" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="City *" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <TextField fx:id="cityField" promptText="Enter city" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="State *" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                    <ComboBox fx:id="stateCombo" promptText="Select state" prefWidth="360" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                    <Label text="Pincode *" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                    <TextField fx:id="pincodeField" promptText="6-digit pincode" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                </GridPane>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Terms -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <CheckBox fx:id="termsCheckbox"/>
+                <Text text="I agree to the "/>
+                <Hyperlink text="Terms and Conditions"/>
+                <Text text="and "/>
+                <Hyperlink text="Privacy Policy"/>
+            </HBox>
+
+            <!-- Buttons -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Register" onAction="#handleRegister" prefWidth="200" prefHeight="45"/>
+                <Button text="Cancel" onAction="#handleCancel" prefWidth="200" prefHeight="45"/>
+            </HBox>
+
+            <!-- Footer -->
+            <VBox alignment="CENTER" spacing="5">
+                <Text text="* Required fields" style="-fx-font-size: 12px; -fx-fill: #e74c3c;"/>
+                <Text text="Already have an account?" style="-fx-font-size: 13px; -fx-fill: #7f8c8d;"/>
+                <Hyperlink text="Login here"/>
+            </VBox>
+
+        </VBox>
+    </content>
+</ScrollPane>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="controller.DonorController" styleClass="dashboard-root">
+    
+    <!-- Top Navigation Bar -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="navbar">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            
+            <!-- App Title -->
+            <VBox>
+                <Text text="VitalAid" styleClass="navbar-title"/>
+                <Text text="Donor Dashboard" styleClass="navbar-subtitle"/>
+            </VBox>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <!-- Notification Bell -->
+            <Button fx:id="notificationButton" styleClass="icon-button" 
+                    onAction="#showNotifications">
+                <graphic>
+                    <HBox alignment="CENTER">
+                        <Text text="🔔" styleClass="notification-icon"/>
+                        <Label fx:id="notificationBadge" styleClass="notification-badge" 
+                               visible="false"/>
+                    </HBox>
+                </graphic>
+            </Button>
+            
+            <!-- User Menu -->
+            <MenuButton fx:id="userMenuButton" styleClass="user-menu">
+                <graphic>
+                    <HBox spacing="10" alignment="CENTER">
+                        <Circle radius="20" fill="#4CAF50"/>
+                        <VBox alignment="CENTER_LEFT">
+                            <Text fx:id="userName" text="Donor Name" styleClass="user-name"/>
+                            <Text text="Donor" styleClass="user-role"/>
+                        </VBox>
+                    </HBox>
+                </graphic>
+                <items>
+                    <MenuItem text="My Profile" onAction="#showProfile"/>
+                    <MenuItem text="Settings" onAction="#showSettings"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Logout" onAction="#handleLogout"/>
+                </items>
+            </MenuButton>
+        </HBox>
+    </top>
+    
+    <!-- Main Content Area -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="content-scroll">
+            <VBox spacing="25" styleClass="dashboard-content">
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+                
+                <!-- Welcome Section -->
+                <VBox spacing="10" styleClass="welcome-section">
+                    <Text fx:id="welcomeText" text="Welcome back, John!" styleClass="welcome-title"/>
+                    <Text text="Thank you for being a lifesaver! Check your dashboard for updates." 
+                         styleClass="welcome-subtitle"/>
+                </VBox>
+                
+                <!-- Statistics Cards -->
+                <HBox spacing="20" alignment="CENTER">
+                    
+                    <!-- Total Donations Card -->
+                    <VBox spacing="10" styleClass="stat-card" prefWidth="280">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Text text="🩸" styleClass="stat-icon"/>
+                            <VBox>
+                                <Text text="Total Donations" styleClass="stat-label"/>
+                                <Text fx:id="totalDonationsText" text="0" styleClass="stat-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    
+                    <!-- Last Donation Card -->
+                    <VBox spacing="10" styleClass="stat-card" prefWidth="280">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <Text text="📅" styleClass="stat-icon"/>
+                            <VBox>
+                                <Text text="Last Donation" styleClass="stat-label"/>
+                                <Text fx:id="lastDonationText" text="Never" styleClass="stat-value-small"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                    
+                   
+                    <!-- Availability Status Card -->
+<VBox spacing="10" styleClass="stat-card" prefWidth="280">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Text text="✓" styleClass="stat-icon"/>
+        <VBox spacing="5">
+            <Text text="Availability Status" styleClass="stat-label"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Text fx:id="availabilityText" text="Available" 
+                     styleClass="availability-status"/>
+                <ToggleButton fx:id="availabilityToggle" 
+                             text="Toggle"
+                             onAction="#toggleAvailability"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>
+                    
+                    <!-- Blood Group Card -->
+                    <VBox spacing="10" styleClass="stat-card-highlight" prefWidth="280">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        <VBox alignment="CENTER" spacing="5">
+                            <Text text="Your Blood Group" styleClass="stat-label"/>
+                            <Text fx:id="bloodGroupText" text="A+" styleClass="blood-group-large"/>
+                        </VBox>
+                    </VBox>
+                </HBox>
+                
+                <!-- Main Content Grid -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                    </columnConstraints>
+                    
+                    <!-- Pending Requests Section -->
+                    <VBox spacing="15" styleClass="content-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Text text="📋 Donation Requests" styleClass="section-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="View All" styleClass="btn-link" onAction="#viewAllRequests"/>
+                        </HBox>
+                        
+                        <Separator/>
+                        
+                        <!-- Requests List -->
+                        <ListView fx:id="requestsList" styleClass="requests-list" prefHeight="300"/>
+                        
+                        <Button text="Refresh Requests" styleClass="btn-secondary" 
+                               onAction="#refreshRequests" prefHeight="40"/>
+                    </VBox>
+                    
+                    <!-- Donation History Section -->
+                    <VBox spacing="15" styleClass="content-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Text text="📊 Donation History" styleClass="section-title"/>
+                        </HBox>
+                        
+                        <Separator/>
+                        
+                        <!-- History Table -->
+                        <TableView fx:id="historyTable" styleClass="history-table" prefHeight="300">
+                            <columns>
+                                <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                                <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+                                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="100"/>
+                                <TableColumn fx:id="hospitalColumn" text="Hospital" prefWidth="200"/>
+                            </columns>
+                        </TableView>
+                        
+                        <Button text="Download Report" styleClass="btn-outline" 
+                               onAction="#downloadReport" prefHeight="40"/>
+                    </VBox>
+                    
+                    <!-- Profile Information Section -->
+                    <VBox spacing="15" styleClass="content-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        
+                        <Text text="👤 My Profile" styleClass="section-title"/>
+                        <Separator/>
+                        
+                        <GridPane hgap="15" vgap="12">
+                            <Label text="Full Name:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                            <Text fx:id="fullNameText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                            
+                            <Label text="Blood Group:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                            <Text fx:id="bloodGroupProfileText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            
+                            <Label text="Age:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                            <Text fx:id="ageText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            
+                            <Label text="City:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                            <Text fx:id="cityText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                            
+                            <Label text="Weight:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                            <Text fx:id="weightText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                            
+                            <Label text="Phone:" styleClass="profile-label" 
+                                   GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                            <Text fx:id="phoneText" text="-" styleClass="profile-value" 
+                                  GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        </GridPane>
+                        
+                        <Button text="Edit Profile" styleClass="btn-primary" 
+                               onAction="#editProfile" prefHeight="40"/>
+                    </VBox>
+                    
+                    <!-- Nearby Hospitals Section -->
+                    <VBox spacing="15" styleClass="content-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        
+                        <Text text="🏥 Nearby Hospitals" styleClass="section-title"/>
+                        <Separator/>
+                        
+                        <!-- Hospitals List -->
+                        <ListView fx:id="hospitalsList" styleClass="hospitals-list" prefHeight="280"/>
+                        
+                        <Button text="Find More Hospitals" styleClass="btn-outline" 
+                               onAction="#findHospitals" prefHeight="40"/>
+                    </VBox>
+                </GridPane>
+                
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+</BorderPane>
